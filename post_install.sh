@@ -8,7 +8,8 @@ cp .env.example .env
 php artisan key:generate
 chown -R www:www .
 
-cp /usr/local/etc/nginx-heimdall-no-ssl.conf /usr/local/etc/nginx/nginx.conf
+cp -v /usr/local/etc/nginx-heimdall-no-ssl.conf /usr/local/etc/nginx/nginx.conf
+cp -v /usr/local/etc/php.ini-production /usr/local/etc/php.ini
 
 sysrc php_fpm_enable=YES
 sysrc nginx_enable=YES
