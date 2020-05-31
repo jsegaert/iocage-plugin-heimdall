@@ -8,7 +8,9 @@ cp .env.example .env
 php artisan key:generate
 chown -R www:www .
 
-cp -v /usr/local/etc/nginx-heimdall-no-ssl.conf /usr/local/etc/nginx/nginx.conf
+/usr/local/bin/heimdall-generate-sslcert.sh
+
+cp -v /usr/local/etc/heimdall/nginx-heimdall-default.conf /usr/local/etc/nginx/nginx.conf
 cp -v /usr/local/etc/php.ini-production /usr/local/etc/php.ini
 
 sysrc php_fpm_enable=YES
