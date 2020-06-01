@@ -1,0 +1,16 @@
+{
+    "servicerestart":"service nginx restart",
+    "serviceget": "/usr/local/bin/heimdallget",
+    "serviceset": "/usr/local/bin/heimdallset",
+    "options":
+    {
+        "httpsredirect": {
+            "type": "bool",
+            "name": "Redirect to HTTPS",
+            "description": "Always use HTTPS to Heimdall Dashboard",
+            "default": false,
+            "requirerestart": true
+        }
+    }
+}
+
