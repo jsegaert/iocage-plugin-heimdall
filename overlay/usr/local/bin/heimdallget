@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Get configuration setting from Heimdall nginx.conf configuration file
+
+case $1 in
+    httpsredirect) egrep -e '^\s*return 307 https://\$host\$request_uri;' /usr/local/etc/nginx/nginx.conf > /dev/null
+                   if [ $? -eq 0 ] ; then echo "true" ; else echo "false"; fi
+                   ;;
+    scheme) egrep -e '^\s*return 307 https://\$host\$request_uri;' /usr/local/etc/nginx/nginx.conf > /dev/null
+            if [ $? -eq 0 ] ; then echo "https" ; else echo "http"; fi
+            ;;
+    *) echo "Unknown option">&2
+       exit 1
+       ;;
+esac
+
