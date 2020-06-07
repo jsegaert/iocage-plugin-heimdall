@@ -10,6 +10,11 @@ fetch https://raw.githubusercontent.com/jsegaert/iocage-my-plugins/master/heimda
 ```
 Install the plugin.  Adjust the network settings as needed.
 ```
-iocage fetch -P heimdall.json -n heimdall
+iocage fetch -P heimdall.json -n heimdall dhcp=on
+```
+## Plugin options
+By default the interface listens on both ports 80 and 443.  To redirect HTTP requests to HTTPS, activate the HTTPSREDIRECT option as follows:
+```
+iocage set -P httpsredirect=true heimdall
 ```
 
