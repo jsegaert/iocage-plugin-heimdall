@@ -3,12 +3,12 @@
 echo "Installing Heimdall repo..."
 mkdir -p /usr/local/www
 cd /usr/local/www
-git clone https://github.com/linuxserver/Heimdall.git --depth 1 heimdall 
+git clone https://github.com/linuxserver/Heimdall.git --quiet --depth 1 heimdall
 cd heimdall
 cp .env.example .env
 
 echo "Generating application key..."
-php artisan key:generate > /dev/null 2>&1
+php artisan key:generate
 chown -R www:www .
 
 echo "Generating self-signed SSL certificate..."
