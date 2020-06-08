@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 # Generate self-signed SSL certificate
 # Restart NGINX for changes to take effect
 

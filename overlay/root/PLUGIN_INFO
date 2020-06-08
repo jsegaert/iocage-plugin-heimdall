@@ -1,0 +1,11 @@
+The Heimdall Application Dashboard plugin has been succesfully installed!
+- The plugin works out-of-the box when installed with the default settings
+- By default, the interface listens on both ports 80 and 443
+- The default self-signed SSL certificate is located in /usr/local/share/certs/
+- The default Nginx config file is copied from /usr/local/etc/heimdall/nginx-heimdall-default.conf
+
+Plugin option:
+- To use HTTPS only, activate the HTTPSREDIRECT option as follows:
+    
+    iocage set -P httpsredirect=true <heimdall-jailname>
+
