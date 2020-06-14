@@ -7,6 +7,7 @@
 FILE_NGINX="/usr/local/etc/nginx/nginx.conf"
 FILE_DEFAULT="/usr/local/etc/heimdall/nginx-heimdall-default.conf"
 FILE_HTTPS="/usr/local/etc/heimdall/nginx-heimdall-https-redirect.conf"
+HEIMDALL_GET="/usr/local/bin/heimdallget"
 
 
 give_message()
@@ -18,11 +19,21 @@ else
 fi
 }
 
+check_current_value()
+{
+if [ `$HEIMDALL_GET $1` == $2 ] ; then
+    echo "Value is already $2"; exit 0
+fi
+}
+
 case $1 in
-    httpsredirect) if [ $2 == "true" ] ; then
+    httpsredirect) check_current_value $1 $2
+                   if [ $2 == "true" ] ; then
                        diff -u $FILE_DEFAULT $FILE_HTTPS | patch -s -f -V t $FILE_NGINX
-                   else
+                   elif [ $2 == "false" ] ; then
                        diff -u $FILE_HTTPS $FILE_DEFAULT | patch -s -f -V t $FILE_NGINX
+                   else
+                       echo "Value $2 is not allowed"; exit 1
                    fi
                    give_message
                    ;;
