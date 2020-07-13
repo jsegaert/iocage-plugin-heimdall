@@ -10,6 +10,14 @@
             "description": "Always use HTTPS to Heimdall Dashboard",
             "default": false,
             "requirerestart": true
+        },
+        "sessionlifetime": {
+	     "type": "int",
+             "name": "Session Lifetime",
+             "description": "Session Lifetime in minutes",
+             "range": "1-525600",
+             "default": "120",
+             "requirerestart": false
         }
     }
 }
