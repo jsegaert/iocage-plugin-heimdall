@@ -8,14 +8,15 @@ FILE_NGINX="/usr/local/etc/nginx/nginx.conf"
 FILE_DEFAULT="/usr/local/etc/heimdall/nginx-heimdall-default.conf"
 FILE_HTTPS="/usr/local/etc/heimdall/nginx-heimdall-https-redirect.conf"
 HEIMDALL_GET="/usr/local/bin/heimdallget"
+HEIMDALL_ENV="/usr/local/www/heimdall/.env"
 
 
 give_message()
 {
 if [ $? -eq 0 ] ; then
-    echo "Changing ${FILE_NGINX}"
+    echo "Changing $1"
 else
-    echo "Error updating ${FILE_NGINX}">2 ; exit 1
+    echo "Error updating $1">2 ; exit 1
 fi
 }
 
@@ -35,9 +36,12 @@ case $1 in
                    else
                        echo "Value $2 is not allowed"; exit 1
                    fi
-                   give_message
+                   give_message $FILE_NGINX
                    ;;
+    sessionlifetime) sed -i '' "s/^SESSION_LIFETIME.*/SESSION_LIFETIME=$2/" $HEIMDALL_ENV
+                     give_message $HEIMDALL_ENV
+                     ;;
     *) echo "Unknown option">&2 ; exit 1
-            ;;
+       ;;
 esac
 
