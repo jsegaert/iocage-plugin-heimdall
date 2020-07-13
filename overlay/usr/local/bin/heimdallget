@@ -9,6 +9,8 @@ case $1 in
     scheme) egrep -e '^\s*return 307 https://\$host\$request_uri;' /usr/local/etc/nginx/nginx.conf > /dev/null
             if [ $? -eq 0 ] ; then echo "https" ; else echo "http"; fi
             ;;
+    sessionlifetime) echo `awk -F'=' '/^SESSION_LIFETIME/ { print $2 }' /usr/local/www/heimdall/.env`
+                     ;;
     *) echo "Unknown option">&2
        exit 1
        ;;
