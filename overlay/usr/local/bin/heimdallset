@@ -27,13 +27,6 @@ if [ `$HEIMDALL_GET $1` == $2 ] ; then
 fi
 }
 
-check_current_value()
-{
-if [ `$HEIMDALL_GET $1` == $2 ] ; then
-    echo "Value is already $2"; exit 0
-fi
-}
-
 case $1 in
     httpsredirect) check_current_value $1 $2
                    if [ $2 == "true" ] ; then
